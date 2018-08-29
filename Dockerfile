@@ -9,7 +9,6 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install supervisor nginx op
 
 # Add config files
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD nginx.conf /etc/nginx/conf.d/reverseproxy.conf
 ADD run.sh /run.sh
 RUN rm /etc/init.d/nginx
 
@@ -20,7 +19,7 @@ RUN mkdir /etc/ssl/certs/nginx
 RUN chmod +x /run.sh
 
 # Expose volumes & ports
-VOLUME ["/etc/ssl/certs/nginx/"]
+VOLUME ["/etc/ssl/certs/nginx/", ["/etc/nginx/conf.d/"]
 EXPOSE 80 443
 
 WORKDIR /
