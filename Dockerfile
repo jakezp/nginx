@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install supervisor nginx op
 
 # Add config files
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD nginx.conf /nginx.conf
 ADD run.sh /run.sh
 RUN rm /etc/init.d/nginx
 
