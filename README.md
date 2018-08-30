@@ -4,6 +4,8 @@ Simple nginx reverse proxy configuration to secure app on port different destina
 
 Certificate will be generated on initial start and cron configured to renew certificates once a week. If the certificates are not yet within 30 days of expiry, the renewal will not be completed.
 
+**NB** Ensure your DNS has been configured correctly. Create an A record for SERVERNAME to point to the public IP address of your host, or else the certificate authorization will fail.
+
 Run with:
 ```
 docker run -d --name='nginx' --net='bridge' \
