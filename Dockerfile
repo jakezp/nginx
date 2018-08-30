@@ -20,7 +20,7 @@ RUN mkdir /etc/ssl/certs/nginx
 RUN chmod +x /run.sh
 
 # Expose volumes & ports
-VOLUME ["/etc/ssl/certs/nginx/", ["/etc/nginx/conf.d/"]
+VOLUME ["/etc/nginx/conf.d/"]
 EXPOSE 80 443
 
 WORKDIR /
