@@ -23,7 +23,7 @@ if [[ ! -f /etc/letsencrypt/live/$SERVERNAME/fullchain.pem ]]; then
   nginx -g 'daemon off;' &
   certbot certonly --webroot --email $EMAIL --agree-tos --no-eff-email --webroot-path=/data/letsencrypt -d $SERVERNAME
   sed -i 's/^## //g' /etc/nginx/conf.d/reverseproxy.conf
-  sed -i 's/^##$ //g' /etc/nginx/conf.d/reverseproxy.conf
+  sed -i 's/^##$//g' /etc/nginx/conf.d/reverseproxy.conf
   nginx -s stop
 fi
 
