@@ -17,14 +17,16 @@ fi
 # Create letencrypt directory
 mkdir -p /data/letsencrypt
 
-# Use supervisord to start all processes
-echo -e "Starting supervisord"
-supervisord -c /etc/supervisor/conf.d/supervisord.conf &
-
 # Generate letsencrypt certificates
-if [[ ! -d /etc/letsencrypt/live/$SERVERNAME ]]; then
+if [[ ! -f /etc/letsencrypt/live/$SERVERNAME/fullchain.pem ]]; then
   echo -e "Generating certificates..."
+  nginx -g 'daemon off;' &
   certbot certonly --webroot --email $EMAIL --agree-tos --no-eff-email --webroot-path=/data/letsencrypt -d $SERVERNAME
   sed -i 's/^## //g' /etc/nginx/conf.d/reverseproxy.conf
-  supervisorctl restart nginx
+  sed -i 's/^##$ //g' /etc/nginx/conf.d/reverseproxy.conf
+  nginx -s stop
 fi
+
+# Use supervisord to start all processes
+echo -e "Starting supervisord"
+supervisord -c /etc/supervisor/conf.d/supervisord.conf
