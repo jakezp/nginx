@@ -5,7 +5,7 @@ MAINTAINER jakezp@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
 
 # Update and install packages
-RUN apt-get update && apt-get upgrade -yq && apt-get install supervisor nginx openssl ca-certificates -yq
+RUN apt-get update && apt-get upgrade -yq && apt-get install supervisor nginx openssl ca-certificates certbot -yq
 
 # Add config files
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
