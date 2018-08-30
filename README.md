@@ -19,10 +19,10 @@ docker run -d --name='nginx' --net='bridge' \
       jakezp/nginx
 ```
 
-Change:
-SERVERNAME - FQDN of host / instance / site
-HOSTIP - Host IP address
-DESTPORT - Port of the destination application / service
-EMAIL - Email address (required for letsencrypt certificates)
-/tmp/nginx/config - preferred nginx config location on the host
+Change:<br>
+SERVERNAME - FQDN of host / instance / site<br>
+HOSTIP - Host IP address<br>
+DESTPORT - Port of the destination application / service<br>
+EMAIL - Email address (required for letsencrypt certificates)<br>
+/tmp/nginx/config - preferred nginx config location on the host<br>
 /tmp/nginx/sslcerts - letsencrypt config and cert location
