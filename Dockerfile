@@ -1,11 +1,14 @@
-FROM ubuntu:latest
+# Dockerfile for base image for nginx and certbot
+FROM ubuntu:18.04
 
-MAINTAINER jakezp@gmail.com
+LABEL maintainer="Jakezp <jakezp@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Update and install packages
-RUN apt-get update && apt-get upgrade -yq && apt-get install supervisor nginx openssl ca-certificates certbot cron -yq
+# Install and update packages
+RUN apt-get update \
+    && apt-get upgrade -yq \
+    && apt-get install supervisor nginx openssl ca-certificates certbot cron -yq
 
 # Add config files
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -22,7 +25,6 @@ RUN chmod +x /run.sh
 
 # Expose volumes & ports
 VOLUME ["/etc/nginx/conf.d/", "/etc/letsencrypt/"]
-EXPOSE 80 443
 
 WORKDIR /
 CMD ["/run.sh"]
